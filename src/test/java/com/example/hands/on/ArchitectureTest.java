@@ -60,4 +60,14 @@ class ArchitectureTest {
 
         rule.check(importedClasses);
     }
+
+    @Test
+    void インフラストラクチャ層以外はDBにアクセスしてはいけない() {
+        ArchRule rule = noClasses()
+                .that().resideOutsideOfPackage("..infrastructure..")
+                .should().accessClassesThat()
+                .resideInAnyPackage("javax.persistence..", "jakarta.persistence..", "org.springframework.data.jpa..", "java.sql..", "javax.sql..");
+
+        rule.check(importedClasses);
+    }
 }
