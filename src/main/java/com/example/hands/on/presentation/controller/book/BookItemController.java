@@ -52,34 +52,7 @@ public class BookItemController {
                 .collect(Collectors.toList());
     }
 
-    @PostMapping
-    public BookItemResponse createBookItem(@RequestBody CreateBookItemRequest request) {
-        CreateBookItemCommand command = convertToCreateBookItemCommand(request);
-        BookItemDto bookItemDto = bookItemUseCase.createBookItem(command);
-        return convertToBookItemResponse(bookItemDto);
-    }
-
-    @PutMapping("/{id}")
-    public BookItemResponse updateBookItem(@PathVariable Long id, @RequestBody UpdateBookItemRequest request) {
-        UpdateBookItemCommand command = convertToUpdateBookItemCommand(id, request);
-        BookItemDto bookItemDto = bookItemUseCase.updateBookItem(command);
-        return convertToBookItemResponse(bookItemDto);
-    }
-
-    @DeleteMapping("/{id}")
-    public void deleteBookItem(@PathVariable Long id) {
-        bookItemUseCase.deleteBookItem(id);
-    }
-
     private BookItemResponse convertToBookItemResponse(BookItemDto dto) {
         return new BookItemResponse(dto.getId(), dto.getIsbn(), dto.getStatus());
-    }
-
-    private CreateBookItemCommand convertToCreateBookItemCommand(CreateBookItemRequest request) {
-        return new CreateBookItemCommand(request.isbn(), "");
-    }
-
-    private UpdateBookItemCommand convertToUpdateBookItemCommand(Long id, UpdateBookItemRequest request) {
-        return new UpdateBookItemCommand(id, "", request.status());
     }
 }

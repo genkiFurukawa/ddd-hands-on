@@ -50,14 +50,6 @@ public class BookController {
         return convertToBookResponse(bookDto);
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public BookResponse createBook(@Valid @RequestBody CreateBookRequest request) {
-        CreateBookCommand command = convertToCreateBookCommand(request);
-        BookDto bookDto = bookUseCase.createBook(command);
-        return convertToBookResponse(bookDto);
-    }
-
     @GetMapping("/{isbn}/items")
     public List<BookItemResponse> getBookItems(
             @PathVariable String isbn,
@@ -66,12 +58,6 @@ public class BookController {
         return bookItems.stream()
                 .map(this::convertToBookItemResponse)
                 .collect(Collectors.toList());
-    }
-
-    @GetMapping("/{isbn}/availability")
-    public BookAvailabilityResponse getBookAvailability(@PathVariable String isbn) {
-        BookAvailabilityDto availabilityDto = bookUseCase.getBookAvailability(isbn);
-        return convertToBookAvailabilityResponse(availabilityDto);
     }
 
     private PageResponse<BookResponse> convertToPageResponse(PageDto<BookDto> pageDto) {
@@ -91,17 +77,5 @@ public class BookController {
 
     private BookItemResponse convertToBookItemResponse(BookItemDto dto) {
         return new BookItemResponse(dto.getId(), dto.getIsbn(), dto.getStatus());
-    }
-
-    private BookAvailabilityResponse convertToBookAvailabilityResponse(BookAvailabilityDto dto) {
-        return new BookAvailabilityResponse(dto.getIsbn(), dto.getTotalCopies(), dto.getAvailableCopies(), 
-                dto.getLentCopies(), dto.getReservedCopies(), 0, 0);
-    }
-
-    private CreateBookCommand convertToCreateBookCommand(CreateBookRequest request) {
-        List<String> authors = request.authors().stream()
-                .map(CreateBookRequest.AuthorRequest::name)
-                .collect(Collectors.toList());
-        return new CreateBookCommand(request.isbn(), request.title(), authors, request.publisher().name(), "");
     }
 }

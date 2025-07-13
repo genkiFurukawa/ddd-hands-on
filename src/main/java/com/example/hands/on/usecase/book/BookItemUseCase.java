@@ -70,14 +70,4 @@ public class BookItemUseCase {
         // 8. Return updated book item DTO
         return null;
     }
-
-    public void deleteBookItem(Long id) {
-        // TODO: Implement book item deletion logic
-        // 1. Validate ID
-        // 2. Check if book item exists
-        // 3. Check if book item can be deleted (not currently lent or reserved)
-        // 4. Delete from repository
-        // 5. Handle related data cleanup if necessary
-        return;
-    }
 }

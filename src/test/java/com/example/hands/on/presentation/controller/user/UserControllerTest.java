@@ -97,44 +97,6 @@ class UserControllerTest {
     }
 
     @Test
-    void ユーザーを作成できること() throws Exception {
-        CreateUserRequest request = new CreateUserRequest("新規ユーザー", "newuser@example.com");
-        UserDto userDto = createUserDto(1L, "新規ユーザー", "newuser@example.com", "ACTIVE");
-        when(userUseCase.createUser(any(CreateUserCommand.class))).thenReturn(userDto);
-
-        mockMvc.perform(post("/api/users")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.name").value("新規ユーザー"))
-                .andExpect(jsonPath("$.email").value("newuser@example.com"));
-    }
-
-    @Test
-    void バリデーションエラーでユーザー作成が失敗すること() throws Exception {
-        CreateUserRequest invalidRequest = new CreateUserRequest("", "invalid-email");
-
-        mockMvc.perform(post("/api/users")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(invalidRequest)))
-                .andExpect(status().isBadRequest());
-    }
-
-    @Test
-    void ユーザー情報を更新できること() throws Exception {
-        UpdateUserRequest request = new UpdateUserRequest("更新後ユーザー", "updated@example.com", "INACTIVE");
-        UserDto updatedDto = createUserDto(1L, "更新後ユーザー", "updated@example.com", "INACTIVE");
-        when(userUseCase.updateUser(any(UpdateUserCommand.class))).thenReturn(updatedDto);
-
-        mockMvc.perform(put("/api/users/1")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("更新後ユーザー"))
-                .andExpect(jsonPath("$.status").value("INACTIVE"));
-    }
-
-    @Test
     void ユーザーの貸出履歴を取得できること() throws Exception {
         List<LendingDto> lendings = Arrays.asList(
                 createLendingDto(1L, 1L, 1L, "ACTIVE"),

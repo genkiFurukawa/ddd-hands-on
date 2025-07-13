@@ -51,14 +51,6 @@ public class UserController {
         return convertToUserResponse(userDto);
     }
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public UserResponse createUser(@Valid @RequestBody CreateUserRequest request) {
-        CreateUserCommand command = convertToCreateUserCommand(request);
-        UserDto userDto = userUseCase.createUser(command);
-        return convertToUserResponse(userDto);
-    }
-
     @PutMapping("/{id}")
     public UserResponse updateUser(@PathVariable Long id, @Valid @RequestBody UpdateUserRequest request) {
         UpdateUserCommand command = convertToUpdateUserCommand(id, request);
@@ -121,10 +113,6 @@ public class UserController {
         return new ReservationResponse(dto.getId(), dto.getUserId(), dto.getIsbn(), 
                 new ReservationResponse.BookSummary(dto.getIsbn(), ""), dto.getReservedDate(), 
                 dto.getExpiryDate(), dto.getStatus());
-    }
-
-    private CreateUserCommand convertToCreateUserCommand(CreateUserRequest request) {
-        return new CreateUserCommand(request.name(), request.email());
     }
 
     private UpdateUserCommand convertToUpdateUserCommand(Long id, UpdateUserRequest request) {

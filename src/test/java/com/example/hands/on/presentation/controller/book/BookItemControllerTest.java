@@ -94,40 +94,6 @@ class BookItemControllerTest {
     }
 
     @Test
-    void 蔵書を作成できること() throws Exception {
-        CreateBookItemRequest request = new CreateBookItemRequest("978-4-123456-78-0", "AVAILABLE");
-        BookItemDto bookItemDto = createBookItemDto(1L, "978-4-123456-78-0", "AVAILABLE");
-        when(bookItemUseCase.createBookItem(any(CreateBookItemCommand.class))).thenReturn(bookItemDto);
-
-        mockMvc.perform(post("/api/book-items")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.isbn").value("978-4-123456-78-0"))
-                .andExpect(jsonPath("$.status").value("AVAILABLE"));
-    }
-
-    @Test
-    void 蔵書のステータスを更新できること() throws Exception {
-        UpdateBookItemRequest request = new UpdateBookItemRequest("LENT");
-        BookItemDto updatedDto = createBookItemDto(1L, "978-4-123456-78-0", "LENT");
-        when(bookItemUseCase.updateBookItem(any(UpdateBookItemCommand.class))).thenReturn(updatedDto);
-
-        mockMvc.perform(put("/api/book-items/1")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id").value(1))
-                .andExpect(jsonPath("$.status").value("LENT"));
-    }
-
-    @Test
-    void 蔵書を削除できること() throws Exception {
-        mockMvc.perform(delete("/api/book-items/1"))
-                .andExpect(status().isOk());
-    }
-
-    @Test
     void バリデーションエラーで蔵書作成が失敗すること() throws Exception {
         CreateBookItemRequest invalidRequest = new CreateBookItemRequest("", "INVALID_STATUS");
 

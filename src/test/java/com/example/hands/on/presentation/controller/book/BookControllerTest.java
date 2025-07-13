@@ -93,20 +93,6 @@ class BookControllerTest {
     }
 
     @Test
-    void 書籍を作成できること() throws Exception {
-        CreateBookRequest request = createBookRequest();
-        BookDto bookDto = createBookDto("978-4-123456-78-0", "新しい書籍", "新しい著者", "新しい出版社");
-        when(bookUseCase.createBook(any(CreateBookCommand.class))).thenReturn(bookDto);
-
-        mockMvc.perform(post("/api/books")
-                        .contentType(MediaType.APPLICATION_JSON)
-                        .content(objectMapper.writeValueAsString(request)))
-                .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.isbn").value("978-4-123456-78-0"))
-                .andExpect(jsonPath("$.title").value("新しい書籍"));
-    }
-
-    @Test
     void バリデーションエラーで書籍作成が失敗すること() throws Exception {
         CreateBookRequest invalidRequest = new CreateBookRequest(
                 "", "", List.of(), new CreateBookRequest.PublisherRequest("")
@@ -155,7 +141,7 @@ class BookControllerTest {
         );
         when(bookUseCase.getBookAvailability("978-4-123456-78-0")).thenReturn(availabilityDto);
 
-        mockMvc.perform(get("/api/books/978-4-123456-78-0/availability"))
+        mockMvc.perform(get("/api/books/9784123456780/availability"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.isbn").value("978-4-123456-78-0"))
                 .andExpect(jsonPath("$.totalCopies").value(5))
