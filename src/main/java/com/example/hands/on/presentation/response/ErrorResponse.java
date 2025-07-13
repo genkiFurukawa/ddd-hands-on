@@ -1,4 +1,4 @@
-package com.example.hands.on.presentation.controller.common;
+package com.example.hands.on.presentation.response;
 
 import java.time.LocalDateTime;
 import java.util.List;
