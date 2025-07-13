@@ -6,7 +6,7 @@ import com.example.hands.on.presentation.controller.lending.response.LendingResp
 import com.example.hands.on.usecase.lending.LendingUseCase;
 import com.example.hands.on.usecase.lending.command.LendBookCommand;
 import com.example.hands.on.usecase.lending.dto.LendingDto;
-import com.example.hands.on.usecase.common.dto.PageDto;
+import com.example.hands.on.usecase.dto.PageDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

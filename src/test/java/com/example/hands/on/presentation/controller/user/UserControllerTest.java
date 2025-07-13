@@ -9,7 +9,7 @@ import com.example.hands.on.usecase.user.command.UpdateUserCommand;
 import com.example.hands.on.usecase.user.dto.UserDto;
 import com.example.hands.on.usecase.lending.dto.LendingDto;
 import com.example.hands.on.usecase.lending.dto.ReservationDto;
-import com.example.hands.on.usecase.common.dto.PageDto;
+import com.example.hands.on.usecase.dto.PageDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -13,7 +13,7 @@ import com.example.hands.on.usecase.user.command.UpdateUserCommand;
 import com.example.hands.on.usecase.user.dto.UserDto;
 import com.example.hands.on.usecase.lending.dto.LendingDto;
 import com.example.hands.on.usecase.lending.dto.ReservationDto;
-import com.example.hands.on.usecase.common.dto.PageDto;
+import com.example.hands.on.usecase.dto.PageDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

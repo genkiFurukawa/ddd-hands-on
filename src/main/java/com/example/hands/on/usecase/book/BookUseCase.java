@@ -5,7 +5,7 @@ import com.example.hands.on.usecase.book.command.SearchBooksCommand;
 import com.example.hands.on.usecase.book.dto.BookAvailabilityDto;
 import com.example.hands.on.usecase.book.dto.BookDto;
 import com.example.hands.on.usecase.book.dto.BookItemDto;
-import com.example.hands.on.usecase.common.dto.PageDto;
+import com.example.hands.on.usecase.dto.PageDto;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

@@ -1,6 +1,6 @@
 package com.example.hands.on.usecase.user;
 
-import com.example.hands.on.usecase.common.dto.PageDto;
+import com.example.hands.on.usecase.dto.PageDto;
 import com.example.hands.on.usecase.lending.dto.LendingDto;
 import com.example.hands.on.usecase.lending.dto.ReservationDto;
 import com.example.hands.on.usecase.user.command.CreateUserCommand;

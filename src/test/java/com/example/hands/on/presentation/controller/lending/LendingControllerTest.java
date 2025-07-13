@@ -1,11 +1,10 @@
 package com.example.hands.on.presentation.controller.lending;
 
 import com.example.hands.on.presentation.controller.lending.request.LendBookRequest;
-import com.example.hands.on.presentation.controller.lending.response.LendingResponse;
 import com.example.hands.on.usecase.lending.LendingUseCase;
 import com.example.hands.on.usecase.lending.command.LendBookCommand;
 import com.example.hands.on.usecase.lending.dto.LendingDto;
-import com.example.hands.on.usecase.common.dto.PageDto;
+import com.example.hands.on.usecase.dto.PageDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

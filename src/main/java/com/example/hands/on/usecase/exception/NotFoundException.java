@@ -1,4 +1,4 @@
-package com.example.hands.on.usecase.common.dto.exception;
+package com.example.hands.on.usecase.exception;
 
 public abstract class NotFoundException extends DomainException {
     

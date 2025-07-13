@@ -1,6 +1,6 @@
 package com.example.hands.on.usecase.lending;
 
-import com.example.hands.on.usecase.common.dto.PageDto;
+import com.example.hands.on.usecase.dto.PageDto;
 import com.example.hands.on.usecase.lending.command.LendBookCommand;
 import com.example.hands.on.usecase.lending.dto.LendingDto;
 import org.springframework.stereotype.Service;

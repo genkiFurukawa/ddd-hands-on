@@ -1,4 +1,4 @@
-package com.example.hands.on.usecase.common.dto;
+package com.example.hands.on.usecase.dto;
 
 import java.util.List;
 

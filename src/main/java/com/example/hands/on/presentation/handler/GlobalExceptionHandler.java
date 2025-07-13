@@ -1,8 +1,8 @@
 package com.example.hands.on.presentation.handler;
 
 import com.example.hands.on.presentation.response.ErrorResponse;
-import com.example.hands.on.usecase.common.dto.exception.DomainException;
-import com.example.hands.on.usecase.common.dto.exception.NotFoundException;
+import com.example.hands.on.usecase.exception.DomainException;
+import com.example.hands.on.usecase.exception.NotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

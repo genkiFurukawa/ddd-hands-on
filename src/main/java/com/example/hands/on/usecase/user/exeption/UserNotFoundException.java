@@ -1,6 +1,6 @@
 package com.example.hands.on.usecase.user.exeption;
 
-import com.example.hands.on.usecase.common.dto.exception.NotFoundException;
+import com.example.hands.on.usecase.exception.NotFoundException;
 
 public class UserNotFoundException extends NotFoundException {
     
