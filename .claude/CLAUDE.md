@@ -174,35 +174,6 @@ erDiagram
 **エラーレスポンス:**
 - 400 Bad Request: 不正なクエリパラメータ
 
-#### POST /api/users
-ユーザー作成
-
-**リクエストボディ:**
-```json
-{
-  "name": "山田太郎",
-  "email": "yamada@example.com"
-}
-```
-
-**レスポンス:** 201 Created
-```json
-{
-  "id": 1,
-  "name": "山田太郎",
-  "email": "yamada@example.com",
-  "registeredDate": "2024-01-01",
-  "status": "ACTIVE"
-}
-```
-
-**エラーレスポンス:**
-- 400 Bad Request: 
-  - 名前が空またはnull
-  - メールアドレスが空またはnull
-  - メールアドレス形式が不正
-- 409 Conflict: 同じメールアドレスのユーザーが既に存在
-
 #### GET /api/users/{userId}
 ユーザー詳細取得
 
@@ -222,40 +193,6 @@ erDiagram
 
 **エラーレスポンス:**
 - 404 Not Found: 指定されたユーザーが存在しない
-
-#### PUT /api/users/{userId}
-ユーザー情報更新
-
-**パスパラメータ:**
-- `userId`: ユーザーID
-
-**リクエストボディ:**
-```json
-{
-  "name": "山田次郎",
-  "email": "yamada.jiro@example.com",
-  "status": "ACTIVE"
-}
-```
-
-**レスポンス:** 200 OK
-```json
-{
-  "id": 1,
-  "name": "山田次郎",
-  "email": "yamada.jiro@example.com",
-  "registeredDate": "2024-01-01",
-  "status": "ACTIVE"
-}
-```
-
-**エラーレスポンス:**
-- 400 Bad Request: 
-  - 名前が空またはnull
-  - メールアドレス形式が不正
-  - 不正なステータス値
-- 404 Not Found: 指定されたユーザーが存在しない
-- 409 Conflict: 同じメールアドレスのユーザーが既に存在
 
 #### GET /api/users/{userId}/lendings
 ユーザーの貸出履歴取得
@@ -376,52 +313,6 @@ erDiagram
 **エラーレスポンス:**
 - 400 Bad Request: 不正なクエリパラメータ
 
-#### POST /api/books
-書籍追加
-
-**リクエストボディ:**
-```json
-{
-  "isbn": "9784873117584",
-  "title": "リーダブルコード",
-  "authors": [
-    {
-      "name": "ダスティン・ボズウェル"
-    }
-  ],
-  "publisher": {
-    "name": "オライリージャパン"
-  }
-}
-```
-
-**レスポンス:** 201 Created
-```json
-{
-  "isbn": "9784873117584",
-  "title": "リーダブルコード",
-  "authors": [
-    {
-      "id": 1,
-      "name": "ダスティン・ボズウェル"
-    }
-  ],
-  "publisher": {
-    "id": 1,
-    "name": "オライリージャパン"
-  }
-}
-```
-
-**エラーレスポンス:**
-- 400 Bad Request:
-  - ISBNが空またはnull
-  - ISBN形式が不正（ISBN-10またはISBN-13以外）
-  - タイトルが空またはnull
-  - 著者リストが空またはnull
-  - 出版社情報が空またはnull
-- 409 Conflict: 同じISBNの書籍が既に存在
-
 #### GET /api/books/{isbn}
 書籍詳細取得
 
@@ -473,29 +364,6 @@ erDiagram
     "status": "LENT"
   }
 ]
-```
-
-**エラーレスポンス:**
-- 400 Bad Request: ISBN形式が不正
-- 404 Not Found: 指定されたISBNの書籍が存在しない
-
-#### GET /api/books/{isbn}/availability
-貸出可能状況取得
-
-**パスパラメータ:**
-- `isbn`: ISBN
-
-**レスポンス:** 200 OK
-```json
-{
-  "isbn": "9784873117584",
-  "totalItems": 3,
-  "availableItems": 1,
-  "lentItems": 1,
-  "reservedItems": 1,
-  "unavailableItems": 0,
-  "waitingReservations": 2
-}
 ```
 
 **エラーレスポンス:**
@@ -599,38 +467,6 @@ erDiagram
       "dueDate": "2024-01-15",
       "overdueDays": 5,
       "status": "OVERDUE"
-    }
-  ],
-  "totalElements": 1,
-  "totalPages": 1,
-  "size": 20,
-  "number": 0
-}
-```
-
-#### GET /api/lendings/active
-貸出中一覧取得
-
-**クエリパラメータ:**
-- `page` (optional, default: 0): ページ番号
-- `size` (optional, default: 20, max: 100): 1ページあたりの件数
-
-**レスポンス:** 200 OK
-```json
-{
-  "content": [
-    {
-      "id": 1,
-      "userId": 1,
-      "userName": "山田太郎",
-      "bookItemId": 1,
-      "book": {
-        "isbn": "9784873117584",
-        "title": "リーダブルコード"
-      },
-      "lentDate": "2024-01-01",
-      "dueDate": "2024-01-15",
-      "status": "ACTIVE"
     }
   ],
   "totalElements": 1,
